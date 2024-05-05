@@ -1,0 +1,33 @@
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- Configure the appender layout -->
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <!-- Define the log message format -->
+            <Pattern>%d{HH:mm:ss.SSS} %-5level [%logger{36}] - %msg%n</Pattern>
+        </layout>
+    </appender>
+
+    <!-- Configure the logger -->
+    <logger name="org.jboss.logging" level="DEBUG">
+        <!-- Attach the appender to the logger -->
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+
+
+    <!-- Send logs to Logstash -->
+    <appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+        <destination>192.168.0.102:5000</destination> <!-- Specify your Logstash host and port -->
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+            <customFields>{"applicationName":"match-service","serviceName":"match-service"}</customFields>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="LOGSTASH"/>
+    </root>
+</configuration>
+
+

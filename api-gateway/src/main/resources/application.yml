@@ -1,0 +1,31 @@
+server:
+  port: 9191
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: TEAM-SERVICE
+          uri: lb://TEAM-SERVICE
+          predicates:
+            - Path=/team/**
+        - id: PLAYER-SERVICE
+          uri: lb://PLAYER-SERVICE
+          predicates:
+            - Path=/player/**
+        - id: MATCH-SERVICE
+          uri: lb://MATCH-SERVICE
+          predicates:
+            - Path=/fixture/**
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    hostname: localhost
