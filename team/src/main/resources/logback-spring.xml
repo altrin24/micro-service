@@ -18,7 +18,7 @@
 
     <!-- Send logs to Logstash -->
     <appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
-        <destination>192.168.0.102:5000</destination> <!-- Specify your Logstash host and port -->
+        <destination>192.168.0.107:5000</destination> <!-- Specify your Logstash host and port -->
         <encoder class="net.logstash.logback.encoder.LogstashEncoder">
             <customFields>{"applicationName":"team-service","serviceName":"team-service"}</customFields>
         </encoder>
