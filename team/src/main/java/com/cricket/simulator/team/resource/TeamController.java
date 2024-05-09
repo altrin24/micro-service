@@ -5,8 +5,10 @@ import com.cricket.simulator.team.dto.TeamResDto;
 import com.cricket.simulator.team.Exception.TeamNotFound;
 import com.cricket.simulator.team.service.TeamService;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.retry.annotation.CircuitBreaker;
 import org.springframework.web.bind.annotation.*;
 
 import com.cricket.simulator.team.entity.Team;
@@ -42,8 +44,10 @@ public class TeamController {
 		 return ResponseEntity.ok(teamService.deleteById(teamId)) ;
 	}
 
-	@GetMapping("/find-player-team-id")
-	public ResponseEntity<List<TeamPlayerResDto>> getAllPlayerTeam(@RequestParam ("teamId") Long teamId) throws TeamNotFound {
+
+    @GetMapping("/find-player-team-id")
+    public ResponseEntity<List<TeamPlayerResDto>> getAllPlayerTeam(@RequestParam ("teamId") Long teamId) throws TeamNotFound, InterruptedException {
+		Thread.sleep(10000L);
 		return ResponseEntity.ok(teamService.getPlayerByTeam(teamId) );
 	}
 

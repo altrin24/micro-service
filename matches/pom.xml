@@ -43,7 +43,12 @@
 			<artifactId>mapstruct</artifactId>
 			<version>1.3.1.Final</version><!-- Adjust the version as needed -->
 		</dependency>
-
+		<!-- For Maven -->
+		<dependency>
+			<groupId>io.github.resilience4j</groupId>
+			<artifactId>resilience4j-spring-boot2</artifactId>
+			<!-- Replace with the latest version -->
+		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-netflix-eureka-client -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>

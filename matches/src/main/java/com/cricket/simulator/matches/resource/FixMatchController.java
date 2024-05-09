@@ -5,6 +5,7 @@ import com.cricket.simulator.matches.dto.MatchResDto;
 import com.cricket.simulator.matches.dto.ReqDto;
 import com.cricket.simulator.matches.service.FixtureService;
 import com.cricket.simulator.matches.service.MatchService;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -32,4 +33,6 @@ public class FixMatchController {
     public ResponseEntity<MatchResDto> processMatch(@Valid @RequestBody ReqDto reqDto) throws Exception {
         return ResponseEntity.ok(matchService.processMatch(reqDto.getFixtureId()));
     }
+
+
 }

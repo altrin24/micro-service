@@ -9,6 +9,7 @@ import com.cricket.simulator.matches.exception.FixtureNotFound;
 import com.cricket.simulator.matches.repository.FixtureRepo;
 import com.cricket.simulator.matches.repository.MatchDetailsRepo;
 import com.cricket.simulator.matches.util.CommonUtils;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -41,6 +42,7 @@ public class MatchServiceImpl implements MatchService {
 
     @Override
     @Transactional
+    @CircuitBreaker(name = "service_A", fallbackMethod = "fallbackMethod")
     public MatchResDto processMatch(Long fixtureId) throws FixtureNotFound {
 
 
@@ -116,4 +118,11 @@ public class MatchServiceImpl implements MatchService {
             matchDetailsRepo.saveAll(listMatchDetails);
         }
     }
+
+    private MatchResDto fallbackMethod(Throwable throwable){
+        log.error("exception fallback");
+        return MatchResDto.builder().msg("service unavailable").build();
+    }
+
+
 }
