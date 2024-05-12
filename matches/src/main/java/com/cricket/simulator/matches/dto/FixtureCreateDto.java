@@ -1,18 +1,22 @@
 package com.cricket.simulator.matches.dto;
 
-import jakarta.persistence.Column;
+import com.cricket.simulator.matches.constants.WeatherStatus;
+import com.cricket.simulator.matches.valueobjects.GroundName;
+import com.cricket.simulator.matches.valueobjects.OverPerMatch;
+import com.cricket.simulator.matches.valueobjects.Run;
+import com.cricket.simulator.matches.valueobjects.TeamId;
 import lombok.Data;
 
 @Data
 public class FixtureCreateDto {
-    private Long teamId;
-    private Long awayTeamId;
-    private Long overMatch;
-    private Long homeTeamId;
-    private Long homeTeamTotalRun;
-    private Long awayTeamTotalRun;
-    private Long winTeamId;
-    private String groundName;
-    private String weatherStatus;
-    private Long tossWinTeamId;
+    private TeamId teamId;
+    private TeamId awayTeamId;
+    private OverPerMatch overMatch;
+    private TeamId homeTeamId;
+    private Run homeTeamTotalRun;
+    private Run awayTeamTotalRun;
+    private TeamId winTeamId;
+    private GroundName groundName;
+    private WeatherStatus weatherStatus;
+    private TeamId tossWinTeamId;
 }

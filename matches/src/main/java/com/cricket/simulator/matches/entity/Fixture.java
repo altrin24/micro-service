@@ -1,5 +1,6 @@
 package com.cricket.simulator.matches.entity;
 
+import com.cricket.simulator.matches.constants.WeatherStatus;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -28,7 +29,8 @@ public class Fixture {
     @Column(name = "ground_name")
     private String groundName;
     @Column(name = "weather_status")
-    private String weatherStatus;
+    @Enumerated(EnumType.STRING)
+    private WeatherStatus weatherStatus;
     @Column(name = "toss_win_team_id")
     private Long tossWinTeamId;
 

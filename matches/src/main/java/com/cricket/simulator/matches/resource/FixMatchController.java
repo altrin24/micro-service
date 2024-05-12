@@ -5,7 +5,7 @@ import com.cricket.simulator.matches.dto.MatchResDto;
 import com.cricket.simulator.matches.dto.ReqDto;
 import com.cricket.simulator.matches.service.FixtureService;
 import com.cricket.simulator.matches.service.MatchService;
-import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.swagger.annotations.ApiOperation;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,6 +25,8 @@ public class FixMatchController {
     private final MatchService matchService;
 
     @PostMapping("/")
+    @ApiOperation(value = "Create an item", notes = "Create a new item in the database")
+
     public ResponseEntity<MatchResDto> saveFixture(@RequestBody FixtureCreateDto fixtureCreateDto) throws Exception {
         return ResponseEntity.ok(fixtureService.saveFixtures(fixtureCreateDto));
     }

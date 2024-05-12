@@ -1,13 +1,17 @@
 package com.cricket.simulator.matches.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
 @Table(name = "match_details")
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class MatchDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
